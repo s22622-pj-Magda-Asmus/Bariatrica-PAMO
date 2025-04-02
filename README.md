@@ -1,2 +1,2 @@
 # Bariatrica-PAMO
-Projects for university 
+Project for university 
