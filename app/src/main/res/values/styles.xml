@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Button Styles -->
+    <style name="Button.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/teal</item>
+        <item name="cornerRadius">@dimen/radius_md</item>
+    </style>
+
+    <style name="Button.Secondary" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="strokeColor">@color/gray</item>
+        <item name="cornerRadius">@dimen/radius_md</item>
+    </style>
+
+    <!-- Text Styles -->
+    <style name="Text.Title" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:textSize">@dimen/text_2xl</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:textSize">@dimen/text_lg</item>
+    </style>
+
+    <style name="Text.Body" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:textSize">@dimen/text_base</item>
+    </style>
+
+    <style name="Text.Small" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">@dimen/text_sm</item>
+    </style>
+
+    <!-- Card Styles -->
+    <style name="Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">@dimen/radius_lg</item>
+        <item name="cardElevation">4dp</item>
+        <item name="contentPadding">@dimen/space_4</item>
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
+</resources>
