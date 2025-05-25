@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:orientation="vertical"
-    android:background="@color/gray_light">
+    android:background="@color/gray_light"
+    android:orientation="vertical">
 
     <!-- Header -->
     <LinearLayout
@@ -14,16 +14,16 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:elevation="4dp"
-        android:padding="@dimen/space_4"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:padding="@dimen/space_4">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -41,8 +41,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="@dimen/space_2">
+                    android:layout_marginStart="@dimen/space_2"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -64,15 +64,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginEnd="@dimen/space_4"
-                android:gravity="end">
+                android:gravity="end"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/user_name"
@@ -92,15 +92,15 @@
 
             <Button
                 android:id="@+id/logout_button"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/logout"
+                android:backgroundTint="@color/white"
                 android:drawableStart="@drawable/ic_logout"
                 android:drawablePadding="@dimen/space_2"
-                android:textColor="@color/gray_dark"
-                android:backgroundTint="@color/white"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:padding="@dimen/space_2" />
+                android:padding="@dimen/space_2"
+                android:text="@string/logout"
+                android:textColor="@color/gray_dark" />
         </LinearLayout>
     </LinearLayout>
 
@@ -115,23 +115,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/space_4">
+            android:layout_marginBottom="@dimen/space_4"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/doctor_panel"
-                android:textSize="@dimen/text_2xl"
                 android:textColor="@color/gray_dark"
+                android:textSize="@dimen/text_2xl"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/dashboard_subtitle"
-                android:textSize="@dimen/text_lg"
-                android:textColor="@color/gray_dark" />
+                android:textColor="@color/gray_dark"
+                android:textSize="@dimen/text_lg" />
         </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
@@ -149,33 +149,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="@dimen/space_4"
-                    android:gravity="center_vertical">
+                    android:padding="@dimen/space_4">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="145dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/patient_list"
-                        android:textSize="@dimen/text_lg"
                         android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_lg"
                         android:textStyle="bold" />
 
                     <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space_4"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:hint="@string/search_patient"
                         app:startIconDrawable="@drawable/ic_search">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/search_input"
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:inputType="text"
-                            android:imeOptions="actionSearch" />
+                            android:layout_width="142dp"
+                            android:layout_height="47dp"
+                            android:imeOptions="actionSearch"
+                            android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
@@ -219,9 +219,9 @@
                     android:id="@+id/pagination_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="@dimen/space_4"
-                    android:gravity="center_vertical">
+                    android:padding="@dimen/space_4">
 
                     <TextView
                         android:id="@+id/pagination_info"
@@ -229,35 +229,35 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Strona 1 z 1 (0 wyników)"
-                        android:textSize="@dimen/text_sm"
-                        android:textColor="@color/gray_dark" />
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_sm" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
                         <Spinner
                             android:id="@+id/items_per_page"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:entries="@array/items_per_page"
-                            android:layout_marginEnd="@dimen/space_4" />
+                            android:layout_marginEnd="@dimen/space_4"
+                            android:entries="@array/items_per_page" />
 
                         <Button
                             android:id="@+id/prev_page"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:layout_marginEnd="@dimen/space_1"
                             android:insetLeft="0dp"
                             android:insetTop="0dp"
                             android:insetRight="0dp"
                             android:insetBottom="0dp"
                             app:icon="@drawable/ic_back"
                             app:iconGravity="textStart"
-                            app:iconPadding="0dp"
-                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                            android:layout_marginEnd="@dimen/space_1" />
+                            app:iconPadding="0dp" />
 
                         <LinearLayout
                             android:id="@+id/pagination_pages"
@@ -269,18 +269,18 @@
 
                         <Button
                             android:id="@+id/next_page"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:layout_marginStart="@dimen/space_1"
                             android:insetLeft="0dp"
                             android:insetTop="0dp"
                             android:insetRight="0dp"
                             android:insetBottom="0dp"
+                            android:rotation="180"
                             app:icon="@drawable/ic_back"
                             app:iconGravity="textStart"
-                            app:iconPadding="0dp"
-                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                            android:rotation="180"
-                            android:layout_marginStart="@dimen/space_1" />
+                            app:iconPadding="0dp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

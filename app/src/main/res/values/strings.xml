@@ -24,6 +24,7 @@
     <string name="search_patient">Szukaj pacjenta po kodzie...</string>
     <string name="logout">Wyloguj</string>
     <string name="no_patients">Brak pacjentów do wyświetlenia</string>
+    <string name="details">Szczegóły</string>
 
     <!-- Patient Details -->
     <string name="patient_details">Szczegóły ankiety pacjenta</string>
