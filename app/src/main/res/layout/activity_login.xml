@@ -6,65 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_light"
+    android:fitsSystemWindows="true"
     tools:context=".activities.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <!-- Header z logo -->
-        <LinearLayout
-            android:id="@+id/home_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:id="@+id/logo_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:id="@+id/logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/logo_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="UCK"
-                        android:textColor="@color/blue_dark"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:id="@+id/logo_subtext"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="8dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Uniwersyteckie"
-                            android:textColor="@color/gray_dark"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Centrum Kliniczne"
-                            android:textColor="@color/gray_dark"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/login_body"
@@ -85,7 +33,6 @@
                 android:elevation="4dp"
                 android:maxWidth="450dp">
 
-                <!-- Alert o błędzie -->
                 <LinearLayout
                     android:id="@+id/login_error_alert"
                     android:layout_width="match_parent"
@@ -107,37 +54,9 @@
                         android:id="@+id/login_error_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/red_dark"
-                        android:text="Błąd logowania" />
+                        android:textColor="@color/red_dark" />
                 </LinearLayout>
 
-                <!-- Alert informacyjny -->
-                <LinearLayout
-                    android:id="@+id/login_info_alert"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/blue_light"
-                    android:padding="12dp"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal"
-                    android:visibility="gone"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:src="@drawable/ic_info" />
-
-                    <TextView
-                        android:id="@+id/login_info_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/blue_dark"
-                        android:text="Informacja" />
-                </LinearLayout>
-
-                <!-- Formularz logowania -->
                 <TextView
                     android:id="@+id/login_form_title"
                     android:layout_width="match_parent"
@@ -149,7 +68,6 @@
                     android:gravity="center"
                     android:layout_marginBottom="24dp" />
 
-                <!-- Pole nazwy użytkownika -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -170,7 +88,6 @@
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
-                <!-- Pole hasła -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -192,7 +109,6 @@
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
-                <!-- Przyciski akcji -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -216,23 +132,6 @@
                         android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-
-        <!-- Footer -->
-        <LinearLayout
-            android:id="@+id/home_footer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="8dp"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/copyright"
-                android:textSize="12sp"
-                android:textColor="@color/gray" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
