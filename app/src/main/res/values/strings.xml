@@ -25,6 +25,15 @@
     <string name="logout">Wyloguj</string>
     <string name="no_patients">Brak pacjentów do wyświetlenia</string>
     <string name="details">Szczegóły</string>
+    <string name="search_by_code">Szukaj po kodzie</string>
+    <string name="patient_code">KOD PACJENTA</string>
+    <string name="fill_date">DATA WYPEŁNIENIA</string>
+    <string name="status">STATUS</string>
+    <string name="actions">AKCJE</string>
+    <string name="page">Strona</string>
+    <string name="from">z</string>
+
+
 
     <!-- Patient Details -->
     <string name="patient_details">Szczegóły ankiety pacjenta</string>
