@@ -77,9 +77,9 @@ public class AuthRepository {
 
         tokenManager.removeToken();
         sessionManager.clearUser();
-        currentUser.setValue(null);
+        currentUser.postValue(null);
 
-        loginSuccess.setValue(null);
+        loginSuccess.postValue(null);
         loginError.setValue(null);
     }
 
@@ -93,7 +93,7 @@ public class AuthRepository {
     private void loadCurrentUser() {
         if (isAuthenticated()) {
             User user = sessionManager.getUser();
-            currentUser.setValue(user);
+            currentUser.postValue(user);
         }
     }
 

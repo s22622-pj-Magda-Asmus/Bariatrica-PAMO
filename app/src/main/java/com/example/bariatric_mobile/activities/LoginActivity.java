@@ -36,10 +36,9 @@ public class LoginActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         setupObservers();
         setupListeners();
-        /// TODO: 28.05.2025 uncomment when dashboard will be done
-//            if (viewModel.isAlreadyAuthenticated()) {
-//                navigateToDashboard();
-//            }
+            if (viewModel.isAlreadyAuthenticated()) {
+                navigateToDashboard();
+            }
     }
 
     private void initializeViews() {

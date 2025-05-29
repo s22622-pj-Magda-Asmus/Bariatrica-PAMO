@@ -17,19 +17,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bariatric_mobile.R;
 import com.example.bariatric_mobile.adapters.PatientAdapter;
 import com.example.bariatric_mobile.models.patient.Patient;
+import com.example.bariatric_mobile.services.network.PatientApiService;
+import com.example.bariatric_mobile.services.network.ApiClient;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DoctorDashboardFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private PatientAdapter adapter;
-    private List<Patient> fullPatientList;
-    private List<Patient> filteredPatientList;
+    private List<Patient> fullPatientList = new ArrayList<>();
+    private List<Patient> filteredPatientList = new ArrayList<>();
+
+    private PatientApiService patientApiService;
 
     private TextView paginationInfo;
     private Button nextPageButton, prevPageButton;
@@ -53,30 +60,13 @@ public class DoctorDashboardFragment extends Fragment {
         nextPageButton = view.findViewById(R.id.next_page);
         prevPageButton = view.findViewById(R.id.prev_page);
 
-        // Dane testowe
-        fullPatientList = Arrays.asList(
-                new Patient("1670931", "25.05.2025", "NOWA"),
-                new Patient("1670932", "24.05.2025", "NOWA"),
-                new Patient("1670933", "23.05.2025", "STARA"),
-                new Patient("1670934", "22.05.2025", "NOWA"),
-                new Patient("1670935", "21.05.2025", "STARA"),
-                new Patient("1670936", "20.05.2025", "NOWA"),
-                new Patient("1670937", "19.05.2025", "NOWA"),
-                new Patient("1670938", "18.05.2025", "STARA"),
-                new Patient("1670939", "17.05.2025", "NOWA"),
-                new Patient("1670940", "16.05.2025", "STARA"),
-                new Patient("1670941", "15.05.2025", "NOWA"),
-                new Patient("1670942", "14.05.2025", "NOWA")
-        );
-
-        filteredPatientList = new ArrayList<>(fullPatientList);
-        calculateTotalPages();
-
-        adapter = new PatientAdapter(getPatientsForPage(currentPage), patient ->
+        adapter = new PatientAdapter(new ArrayList<>(), patient ->
                 Toast.makeText(requireContext(), "Szczegóły: " + patient.getCode(), Toast.LENGTH_SHORT).show()
         );
         recyclerView.setAdapter(adapter);
-        updatePaginationInfo();
+
+        patientApiService = ApiClient.getPatientService();
+        fetchPatientsFromApi();
 
         nextPageButton.setOnClickListener(v -> {
             if (currentPage < totalPages) {
@@ -103,13 +93,37 @@ public class DoctorDashboardFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String query = s.toString().trim().toLowerCase();
                 filteredPatientList = fullPatientList.stream()
-                        .filter(p -> p.getCode().toLowerCase().contains(query))
+                        .filter(p -> p.getCode() != null && p.getCode().toLowerCase().contains(query))
                         .collect(Collectors.toList());
 
                 currentPage = 1;
                 calculateTotalPages();
                 adapter.updateData(getPatientsForPage(currentPage));
                 updatePaginationInfo();
+            }
+        });
+    }
+
+    private void fetchPatientsFromApi() {
+        patientApiService.getPatients().enqueue(new Callback<List<Patient>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Patient>> call, @NonNull Response<List<Patient>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    fullPatientList = response.body();
+                    if (fullPatientList == null) fullPatientList = new ArrayList<>();
+                    filteredPatientList = new ArrayList<>(fullPatientList);
+
+                    calculateTotalPages();
+                    adapter.updateData(getPatientsForPage(currentPage));
+                    updatePaginationInfo();
+                } else {
+                    Toast.makeText(requireContext(), "Błąd ładowania danych z serwera", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Patient>> call, @NonNull Throwable t) {
+                Toast.makeText(requireContext(), "Błąd połączenia: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -130,6 +144,5 @@ public class DoctorDashboardFragment extends Fragment {
         String pageText = getString(R.string.page);
         String fromText = getString(R.string.from);
         paginationInfo.setText(pageText + " " + currentPage + " " + fromText + " " + totalPages);
-
     }
 }

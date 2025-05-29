@@ -1,22 +1,23 @@
 package com.example.bariatric_mobile.models.patient;
 
-public class Patient {
-    private final String code;
-    private final String date;
-    private final String status;
+import com.google.gson.annotations.SerializedName;
 
-    public Patient(String code, String date, String status) {
-        this.code = code;
-        this.date = date;
-        this.status = status;
-    }
+public class Patient {
+    @SerializedName("patient_number")
+    private String patientNumber;
+
+    @SerializedName("submission_date")
+    private String submissionDate;
+
+    @SerializedName("status")
+    private String status;
 
     public String getCode() {
-        return code;
+        return patientNumber;
     }
 
-    public String getDate() {
-        return date;
+    public String getSubmissionDate() {
+        return submissionDate;
     }
 
     public String getStatus() {
