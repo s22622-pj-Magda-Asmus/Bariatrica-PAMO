@@ -159,11 +159,14 @@ public class DoctorDashboardFragment extends Fragment {
 
     /**
      * Returns a sublist of patients to be displayed on the specified page.
+     * Safe to use for pagination logic and testing.
      *
      * @param page The page number to fetch.
      * @return A list of patients corresponding to that page.
      */
-    private List<Patient> getPatientsForPage(int page) {
+
+
+    public List<Patient> getPatientsForPage(int page) {
         int start = (page - 1) * itemsPerPage;
         int end = Math.min(start + itemsPerPage, filteredPatientList.size());
         if (start >= end) return new ArrayList<>();
@@ -177,5 +180,21 @@ public class DoctorDashboardFragment extends Fragment {
         String pageText = getString(R.string.page);
         String fromText = getString(R.string.from);
         paginationInfo.setText(pageText + " " + currentPage + " " + fromText + " " + totalPages);
+    }
+
+    public void setFilteredPatientList(List<Patient> list) {
+        this.filteredPatientList = list;
+    }
+
+    public void setItemsPerPage(int itemsPerPage) {
+        this.itemsPerPage = itemsPerPage;
+    }
+
+    public void calculateTotalPagesPublic() {
+        calculateTotalPages();
+    }
+
+    public int getTotalPages() {
+        return totalPages;
     }
 }
