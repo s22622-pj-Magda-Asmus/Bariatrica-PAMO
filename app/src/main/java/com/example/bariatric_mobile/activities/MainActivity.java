@@ -14,7 +14,10 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Called when the activity is starting. Sets the layout for the activity
      * and loads the initial fragment if this is the first creation.
-
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *                           previously being shut down, this Bundle contains
+     *                           the data it most recently supplied.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
