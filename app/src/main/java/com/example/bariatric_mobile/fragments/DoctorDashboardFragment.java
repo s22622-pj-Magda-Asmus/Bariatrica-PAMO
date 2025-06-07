@@ -28,7 +28,13 @@ import java.util.stream.Collectors;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/**
+ * Fragment representing the doctor's dashboard, responsible for displaying
+ * a list of patients with pagination and search functionality.
+ *
+ * Uses {@link PatientAdapter} to present patient data in a RecyclerView and
+ * {@link PatientApiService} to fetch data from a remote API.
+ */
 public class DoctorDashboardFragment extends Fragment {
 
     private RecyclerView recyclerView;
@@ -45,10 +51,20 @@ public class DoctorDashboardFragment extends Fragment {
     private int itemsPerPage = 10;
     private int totalPages = 1;
 
+    /**
+     * Default constructor. Sets the layout resource for this fragment.
+     */
     public DoctorDashboardFragment() {
         super(R.layout.fragment_doctor_dashboard);
     }
 
+    /**
+     * Called when the view has been created. Initializes UI components,
+     * sets up listeners, and starts fetching patient data from the API.
+     *
+     * @param view               The fragment's root view.
+     * @param savedInstanceState A Bundle containing saved state (if any).
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -104,6 +120,10 @@ public class DoctorDashboardFragment extends Fragment {
         });
     }
 
+    /**
+     * Fetches the list of patients from the backend API and updates the UI accordingly.
+     * In case of failure, displays an error message.
+     */
     private void fetchPatientsFromApi() {
         patientApiService.getPatients().enqueue(new Callback<List<Patient>>() {
             @Override
@@ -128,11 +148,21 @@ public class DoctorDashboardFragment extends Fragment {
         });
     }
 
+    /**
+     * Calculates the total number of pages based on the size of the filtered patient list.
+     * Ensures at least one page is available.
+     */
     private void calculateTotalPages() {
         totalPages = (int) Math.ceil((double) filteredPatientList.size() / itemsPerPage);
         if (totalPages == 0) totalPages = 1;
     }
 
+    /**
+     * Returns a sublist of patients to be displayed on the specified page.
+     *
+     * @param page The page number to fetch.
+     * @return A list of patients corresponding to that page.
+     */
     private List<Patient> getPatientsForPage(int page) {
         int start = (page - 1) * itemsPerPage;
         int end = Math.min(start + itemsPerPage, filteredPatientList.size());
@@ -140,6 +170,9 @@ public class DoctorDashboardFragment extends Fragment {
         return filteredPatientList.subList(start, end);
     }
 
+    /**
+     * Updates the pagination info text to reflect the current page and total pages.
+     */
     private void updatePaginationInfo() {
         String pageText = getString(R.string.page);
         String fromText = getString(R.string.from);

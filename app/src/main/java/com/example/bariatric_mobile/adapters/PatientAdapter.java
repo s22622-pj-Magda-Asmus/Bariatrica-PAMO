@@ -14,8 +14,15 @@ import com.example.bariatric_mobile.models.patient.Patient;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * RecyclerView Adapter used to display a list of Patient objects
+ * in the doctor's dashboard. Supports a click listener for patient details.
+ */
 public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientViewHolder> {
 
+    /**
+     * Callback triggered when the "details" button is clicked.
+     */
     public interface OnDetailsClickListener {
         void onDetailsClick(Patient patient);
     }
@@ -28,6 +35,10 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
         this.listener = listener;
     }
 
+
+    /**
+     * ViewHolder class for binding patient data to UI components.
+     */
     public static class PatientViewHolder extends RecyclerView.ViewHolder {
         TextView codeTextView, dateTextView, statusTextView;
         View detailsButton;
@@ -41,6 +52,13 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
         }
     }
 
+    /**
+     * Inflates the layout for each list item.
+     *
+     * @param parent   The parent ViewGroup.
+     * @param viewType The view type.
+     * @return A new instance of {@link PatientViewHolder}.
+     */
     @NonNull
     @Override
     public PatientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,6 +67,12 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
         return new PatientViewHolder(view);
     }
 
+    /**
+     * Binds data to a ViewHolder for a specific position.
+     *
+     * @param holder   The ViewHolder.
+     * @param position The position of the item in the list.
+     */
     @Override
     public void onBindViewHolder(@NonNull PatientViewHolder holder, int position) {
         Patient patient = patients.get(position);
@@ -67,6 +91,12 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
         holder.detailsButton.setOnClickListener(v -> listener.onDetailsClick(patient));
     }
 
+    /**
+     * Formats the ISO 8601 date string to "dd.MM.yyyy".
+     *
+     * @param isoDate The date in ISO 8601 format.
+     * @return The formatted date string.
+     */
     private String formatDate(String isoDate) {
         if (isoDate == null || isoDate.isEmpty()) return "";
         try {
@@ -79,11 +109,21 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
         }
     }
 
-
+    /**
+     * Returns the number of patients in the list.
+     *
+     * @return Total number of items in the adapter.
+     */
     @Override
     public int getItemCount() {
         return patients.size();
     }
+
+    /**
+     * Updates the data in the adapter and refreshes the RecyclerView.
+     *
+     * @param newPatients The new list of patients to display.
+     */
     public void updateData(List<Patient> newPatients) {
         this.patients = new ArrayList<>(newPatients);
         notifyDataSetChanged();

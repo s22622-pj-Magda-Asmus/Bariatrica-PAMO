@@ -5,7 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.bariatric_mobile.R;
 import com.example.bariatric_mobile.fragments.DoctorDashboardFragment;
 
+/**
+ * MainActivity serves as the entry point of the application.
+ * <p>
+ * This activity hosts the {@link DoctorDashboardFragment} inside a container view.
+ */
 public class MainActivity extends AppCompatActivity {
+    /**
+     * Called when the activity is starting. Sets the layout for the activity
+     * and loads the initial fragment if this is the first creation.
+
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
