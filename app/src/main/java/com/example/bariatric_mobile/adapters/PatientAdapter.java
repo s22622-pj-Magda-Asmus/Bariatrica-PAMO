@@ -92,12 +92,12 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
     }
 
     /**
-     * Formats the ISO 8601 date string to "dd.MM.yyyy".
+     * Formats the ISO 8601 date string to "dd.mm.yyyy".
      *
      * @param isoDate The date in ISO 8601 format.
      * @return The formatted date string.
      */
-    private String formatDate(String isoDate) {
+    public String formatDate(String isoDate) {
         if (isoDate == null || isoDate.isEmpty()) return "";
         try {
             java.text.SimpleDateFormat inputFormat = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
