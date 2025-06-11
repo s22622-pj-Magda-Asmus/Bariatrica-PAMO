@@ -4,11 +4,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.content.Context;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bariatric_mobile.R;
+import com.example.bariatric_mobile.activities.PatientDetailsActivity;
 import com.example.bariatric_mobile.models.patient.Patient;
 
 import java.util.ArrayList;
@@ -64,10 +67,18 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
             holder.statusTextView.setVisibility(View.GONE);
         }
 
-        holder.detailsButton.setOnClickListener(v -> listener.onDetailsClick(patient));
+        holder.detailsButton.setOnClickListener(v -> {
+            Context context = v.getContext();
+            Intent intent = new Intent(context, PatientDetailsActivity.class);
+            intent.putExtra("patient_code", patient.getCode());
+            intent.putExtra("submission_date", patient.getSubmissionDate());
+            intent.putExtra("status", patient.getStatus());
+            context.startActivity(intent);
+        });
+
     }
 
-    private String formatDate(String isoDate) {
+   public String formatDate(String isoDate) {
         if (isoDate == null || isoDate.isEmpty()) return "";
         try {
             java.text.SimpleDateFormat inputFormat = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");

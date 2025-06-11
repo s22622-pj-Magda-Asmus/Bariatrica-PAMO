@@ -42,9 +42,9 @@
 <!--            </intent-filter>-->
         </activity>
 
-<!--        <activity-->
-<!--            android:name=".activities.PatientDetailsActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".activities.PatientDetailsActivity"
+            android:exported="false" />
 
     </application>
 
