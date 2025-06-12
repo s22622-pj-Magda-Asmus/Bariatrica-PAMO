@@ -33,8 +33,6 @@
     <string name="page">Strona</string>
     <string name="from">z</string>
 
-
-
     <!-- Patient Details -->
     <string name="patient_details">Szczegóły ankiety pacjenta</string>
     <string name="back_to_list">Powrót do listy pacjentów</string>
@@ -65,4 +63,38 @@
     <string name="error_occurred">Wystąpił błąd</string>
     <string name="try_again">Spróbuj ponownie</string>
     <string name="copyright">© 2023 Uniwersyteckie Centrum Kliniczne</string>
+
+    <!--Details-->
+    <string name="gender">Płeć:</string>
+    <string name="birth_date">Data urodzenia:</string>
+    <string name="height">Wzrost:</string>
+    <string name="max_weight">Maksymalna waga:</string>
+    <string name="obesity_years">Lata otyłości:</string>
+    <string name="bmi">BMI:</string>
+    <string name="refferal">Dane skierowania</string>
+    <string name="patient_code2">Kod pacjenta:</string>
+    <string name="email">Email:</string>
+    <string name="refferal_type">Typ skierowania:</string>
+    <string name="refferal_pin">PIN skierowania:</string>
+    <string name="things_about_surgery">Rozważa operację bariatryczną:</string>
+    <string name="diseases2">Choroby:</string>
+    <string name="additional_diseases">Dodatkowe choroby:</string>
+    <string name="abdominal_surgery">Operacje jamy brzusznej:</string>
+    <string name="diseases_in_family">Choroby w rodzinie:</string>
+    <string name="contraindications">Przeciwwskazania:</string>
+    <string name="treatment_trials">Próby leczenia:</string>
+    <string name="survey_fill_date">Ankieta wypełniona:</string>
+    <string name="medication">Leki przewlekłe:</string>
+    <string name="medication_details">Szczegóły leków:</string>
+    <string name="specialist_care">Pod opieką poradni specjalistycznej:</string>
+    <string name="clinic_type">Rodzaj poradni:</string>
+    <string name="physical_activity">Aktywność fizyczna:</string>
+    <string name="healthy_diet">Zdrowe odżywianie:</string>
+    <string name="processed_food">Żywność przetworzona:</string>
+    <string name="compulsive_eating">Kompulsywne jedzenie:</string>
+    <string name="alcohol">Spożywanie alkoholu:</string>
+    <string name="cigarets">Palenie tytoniu:</string>
+    <string name="mental_support">Wsparcie psychiatryczne:</string>
+    <string name="psychological_support">Wsparcie psychologiczne:</string>
+    <string name="suicial_thoughts">Myśli samobójcze:</string>
 </resources>
