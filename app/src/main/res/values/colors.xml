@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="blue">#3B82F6</color>
-    <color name="blue_dark">#003C71</color>
-    <color name="blue_light">#E1F5FE</color>
+    <color name="blue_dark">#1976D2</color>
+    <color name="blue_light">#90CAF9</color>
 
-    <color name="green">#22C55E</color>
+    <color name="green">#4CAF50</color>
     <color name="green_dark">#16A34A</color>
     <color name="green_light">#D1FAE5</color>
 
     <color name="yellow">#A16207</color>
     <color name="yellow_light">#FEF3C7</color>
+    <color name="orange">#FF9800</color>
 
-    <color name="red">#EF4444</color>
+    <color name="red">#F44336</color>
     <color name="red_dark">#DC2626</color>
     <color name="red_light">#FEE2E2</color>
 

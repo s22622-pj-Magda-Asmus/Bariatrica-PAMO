@@ -71,6 +71,7 @@
     <string name="max_weight">Maksymalna waga:</string>
     <string name="obesity_years">Lata otyłości:</string>
     <string name="bmi">BMI:</string>
+    <string name="bmi_category">Kategoria:</string>
     <string name="refferal">Dane skierowania</string>
     <string name="patient_code2">Kod pacjenta:</string>
     <string name="email">Email:</string>
