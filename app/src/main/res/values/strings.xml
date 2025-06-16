@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">UCK Doctor</string>
+    <string name="app_name">Hospital Doctor</string>
+    <string name="doctor_dashboard">Panel lekarza</string>
 
     <!-- Authentication -->
     <string name="login_title">Logowanie Lekarza</string>
@@ -16,6 +17,10 @@
     <string name="session_expires_in">Twoja sesja wygaśnie za %1$d sekund.</string>
     <string name="renew_session">Odnów sesję</string>
     <string name="renewing_session">Odnawianie sesji...</string>
+
+    <!--    HEADER-->
+    <string name="hospital">SZPITAL</string>
+    <string name="logged_as">Zalogowany jako:</string>
 
     <!-- Dashboard -->
     <string name="doctor_panel">Panel Lekarza</string>
@@ -55,6 +60,7 @@
     <string name="lifestyle">Styl życia</string>
     <string name="mental_health">Zdrowie psychiczne</string>
     <string name="weight_prediction">Predykcja utraty wagi</string>
+    <string name="weight_loss_prediction">Predykcja utraty wagi</string>
 
     <!-- Misc -->
     <string name="yes">Tak</string>
@@ -74,7 +80,6 @@
     <string name="bmi_category">Kategoria:</string>
     <string name="refferal">Dane skierowania</string>
     <string name="patient_code2">Kod pacjenta:</string>
-    <string name="email">Email:</string>
     <string name="refferal_type">Typ skierowania:</string>
     <string name="refferal_pin">PIN skierowania:</string>
     <string name="things_about_surgery">Rozważa operację bariatryczną:</string>
@@ -98,4 +103,5 @@
     <string name="mental_support">Wsparcie psychiatryczne:</string>
     <string name="psychological_support">Wsparcie psychologiczne:</string>
     <string name="suicial_thoughts">Myśli samobójcze:</string>
+    <string name="close">Zamknij</string>
 </resources>

@@ -1,7 +1,11 @@
 package com.example.bariatric_mobile.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,7 +30,6 @@ public class PatientDetailsActivity extends AppCompatActivity {
     private PatientDetailsViewModel viewModel;
 
     private Button logoutButton;
-    private Button printButton;
     private TextView detailsCodeText;
     private TextView detailsDateText;
     private LinearLayout backToList;
@@ -45,7 +48,6 @@ public class PatientDetailsActivity extends AppCompatActivity {
 
     private void initializeViews() {
         logoutButton = findViewById(R.id.logout_button);
-        printButton = findViewById(R.id.print_button);
         detailsCodeText = findViewById(R.id.details_code);
         detailsDateText = findViewById(R.id.details_date);
         backToList = findViewById(R.id.back_to_list);
@@ -83,9 +85,6 @@ public class PatientDetailsActivity extends AppCompatActivity {
             navigateToLogin();
         });
 
-        printButton.setOnClickListener(v -> {
-            // TODO: Implement PDF generation
-        });
     }
 
     private void loadPatientData() {
@@ -197,10 +196,15 @@ public class PatientDetailsActivity extends AppCompatActivity {
         TextView textView = findViewById(textViewId);
         if (textView != null) {
             String label = getString(labelStringId);
-            String formattedText = label + " " + value;
-            textView.setText(formattedText);
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            SpannableString boldLabel = new SpannableString(label + ": ");
+            boldLabel.setSpan(new StyleSpan(Typeface.BOLD), 0, boldLabel.length(), 0);
+            builder.append(boldLabel);
+            builder.append(value != null ? value : "");
+            textView.setText(builder);
         }
     }
+
 
     @Override
     protected void onDestroy() {
