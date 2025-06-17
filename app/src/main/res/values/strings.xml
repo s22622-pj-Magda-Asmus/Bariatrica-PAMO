@@ -104,11 +104,45 @@
     <string name="suicial_thoughts">Myśli samobójcze:</string>
     <string name="close">Zamknij</string>
 
+    <!-- Diseases -->
+    <string name="disease_arthritis">Choroba zwyrodnieniowa stawów</string>
+    <string name="disease_sleep_apnea">Obturacyjny bezdech senny</string>
+    <string name="disease_cardio_disease">Choroby układu sercowo-naczyniowego</string>
+    <string name="disease_diabetes">Cukrzyca typu 2</string>
+    <string name="disease_hypertension">Nadciśnienie tętnicze</string>
+    <string name="disease_dyslipidemia">Dyslipidemia</string>
+
+    <!-- Additional diseases -->
+    <string name="disease_prediabetes">Stan przedcukrzycowy</string>
+    <string name="disease_fatty_liver">Stłuszczenie wątroby</string>
+    <string name="disease_pcos">PCOS/zaburzenia płodności/obniżone libido</string>
+    <string name="disease_asthma">Astma oskrzelowa</string>
+    <string name="disease_copd">POCHP</string>
+    <string name="disease_hypothyroidism">Niedoczynność tarczycy</string>
+    <string name="disease_cancer">Choroba nowotworowa</string>
+
+    <!-- Contraindications -->
+    <string name="contraindication_blood_clotting">Ciężkie zaburzenia krzepnięcia krwi</string>
+    <string name="contraindication_addiction">Czynne uzależnienie od alkoholu lub narkotyków</string>
+    <string name="contraindication_mental_disability">Upośledzenie umysłowe ciężkiego stopnia</string>
+    <string name="contraindication_no_follow_up">Brak możliwości udziału w stałej długoterminowej kontroli po leczeniu operacyjnym</string>
+    <string name="contraindication_pregnancy">Okres 12 miesięcy poprzedzający planowaną ciążę oraz okres ciąży i karmienia piersią</string>
+
+    <!-- Family diseases -->
+    <string name="family_disease_heart_disease">Zawały serca i/lub choroba wieńcowa</string>
+    <string name="family_disease_diabetes">Cukrzyca typu 2</string>
+    <string name="family_disease_hypertension">Nadciśnienie tętnicze</string>
+    <string name="family_disease_cancer">Choroby nowotworowe</string>
+
+    <!-- Previous treatments -->
+    <string name="treatment_diet">niefarmakologiczne (dieta, aktywność fizyczna)</string>
+    <string name="treatment_meds">farmakologiczne</string>
+    <string name="treatment_surgery">chirurgiczne</string>
+
     <string name="prediction_1_month">1 miesiąc po operacji:</string>
     <string name="prediction_3_months">3 miesiące po operacji:</string>
     <string name="prediction_6_months">6 miesięcy po operacji:</string>
 
-    <!-- Chart strings to add to res/values/strings.xml -->
     <!-- Chart loading and error messages -->
     <string name="loading_prediction">Ładowanie predykcji…</string>
     <string name="no_data_to_display">Brak danych do wyświetlenia</string>
@@ -123,6 +157,11 @@
     <string name="three_months_after">3 miesiące po</string>
     <string name="six_months_after">6 miesięcy po</string>
 
-    <!-- Units -->
     <string name="kg_unit">kg</string>
+    <string name="dont_know">Nie wiem</string>
+    <string name="none">Brak</string>
+
+    <!-- Format strings with parameters -->
+    <string name="weight_format">%d kg</string>
+    <string name="height_format">%d cm</string>
 </resources>

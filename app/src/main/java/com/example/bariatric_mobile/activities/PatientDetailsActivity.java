@@ -31,17 +31,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Activity for displaying detailed patient information and weight loss predictions.
+ *
+ * Shows comprehensive patient survey data including personal information,
+ * medical history, lifestyle factors, and AI-generated weight loss predictions
+ * with interactive charts. Supports data formatting, translation, and navigation.
+ */
 public class PatientDetailsActivity extends AppCompatActivity {
 
     private PatientDetailsViewModel viewModel;
-
     private Button logoutButton;
     private TextView detailsCodeText;
     private TextView detailsDateText;
     private LinearLayout backToList;
-
     private WebView chartWebView;
 
+    /**
+     * Called when the activity is first created.
+     * Initializes views, ViewModel, observers, and loads patient data.
+     *
+     * @param savedInstanceState Bundle containing saved state data
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +65,9 @@ public class PatientDetailsActivity extends AppCompatActivity {
         loadPatientData();
     }
 
+    /**
+     * Initializes all UI components and sets up the WebView for charts.
+     */
     private void initializeViews() {
         logoutButton = findViewById(R.id.logout_button);
         detailsCodeText = findViewById(R.id.details_code);
@@ -63,17 +77,23 @@ public class PatientDetailsActivity extends AppCompatActivity {
         setupWebView();
     }
 
+    /**
+     * Creates and initializes the ViewModel instance.
+     */
     private void initializeViewModel() {
         viewModel = new ViewModelProvider(this).get(PatientDetailsViewModel.class);
     }
 
+    /**
+     * Sets up LiveData observers for patient data, predictions, and user state.
+     * Updates UI when data changes and handles chart loading.
+     */
     private void setupObservers() {
         viewModel.getPatientDetails().observe(this, surveyData -> {
             if (surveyData != null) {
                 populatePatientData(surveyData);
                 tryPopulatePredictionTexts();
                 tryLoadChart();
-
             }
         });
 
@@ -91,6 +111,9 @@ public class PatientDetailsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sets up click listeners for navigation and logout functionality.
+     */
     private void setupListeners() {
         backToList.setOnClickListener(v -> finish());
 
@@ -98,9 +121,11 @@ public class PatientDetailsActivity extends AppCompatActivity {
             viewModel.logout();
             navigateToLogin();
         });
-
     }
 
+    /**
+     * Loads patient data based on the patient code passed in the intent.
+     */
     private void loadPatientData() {
         String patientCode = getIntent().getStringExtra("patient_code");
         if (patientCode != null) {
@@ -108,6 +133,9 @@ public class PatientDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Navigates to the login screen and clears the activity stack.
+     */
     private void navigateToLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -115,6 +143,10 @@ public class PatientDetailsActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Configures the WebView for displaying interactive charts.
+     * Enables JavaScript and sets up page load handling.
+     */
     @SuppressLint("SetJavaScriptEnabled")
     private void setupWebView() {
         if (chartWebView == null) return;
@@ -134,6 +166,11 @@ public class PatientDetailsActivity extends AppCompatActivity {
         chartWebView.loadUrl("file:///android_asset/chart_simple.html");
     }
 
+    /**
+     * Populates all patient data sections with survey information.
+     *
+     * @param surveyData The patient survey data to display
+     */
     private void populatePatientData(SurveyData surveyData) {
         detailsCodeText.setText(surveyData.getPatientCode());
         detailsDateText.setText(DataFormatter.formatDate(surveyData.getDate()));
@@ -146,12 +183,17 @@ public class PatientDetailsActivity extends AppCompatActivity {
         populateMentalHealthSection(surveyData);
     }
 
+    /**
+     * Populates personal information section including BMI calculations.
+     *
+     * @param surveyData The patient survey data
+     */
     private void populatePersonalDataSection(SurveyData surveyData) {
         setLabeledTextView(R.id.details_gender, R.string.gender, surveyData.getGender());
         setLabeledTextView(R.id.details_birthdate, R.string.birth_date, DataFormatter.formatDate(surveyData.getBirthDate()));
-        setLabeledTextView(R.id.details_height, R.string.height, DataFormatter.formatHeight(surveyData.getHeight()));
-        setLabeledTextView(R.id.details_max_weight, R.string.max_weight, DataFormatter.formatWeight(surveyData.getWeight()));
-        setLabeledTextView(R.id.details_obesity_years, R.string.obesity_years, DataFormatter.formatNullableInt(surveyData.getObesityYears()));
+        setLabeledTextView(R.id.details_height, R.string.height, DataFormatter.formatHeight(this, surveyData.getHeight()));
+        setLabeledTextView(R.id.details_max_weight, R.string.max_weight, DataFormatter.formatWeight(this,surveyData.getWeight()));
+        setLabeledTextView(R.id.details_obesity_years, R.string.obesity_years, DataFormatter.formatNullableInt(this, surveyData.getObesityYears()));
 
         double bmi = BmiCalculator.calculateBMI(surveyData.getWeight(), surveyData.getHeight());
         setLabeledTextView(R.id.details_bmi, R.string.bmi, BmiCalculator.getFormattedBMI(bmi));
@@ -160,64 +202,95 @@ public class PatientDetailsActivity extends AppCompatActivity {
         bmiTextView.setTextColor(BmiCalculator.getBMIColor(this, bmi));
     }
 
+    /**
+     * Populates referral information section.
+     *
+     * @param surveyData The patient survey data
+     */
     private void populateReferralDataSection(SurveyData surveyData) {
         setLabeledTextView(R.id.details_ref_code, R.string.patient_code2, surveyData.getPatientCode());
         setLabeledTextView(R.id.details_ref_type, R.string.refferal_type, surveyData.getReferralType());
         setLabeledTextView(R.id.details_ref_pin, R.string.refferal_pin, surveyData.getReferralPIN());
-        setLabeledTextView(R.id.details_ref_consider_op, R.string.things_about_surgery, DataFormatter.formatBoolean(surveyData.isConsiderSurgery()));
+        setLabeledTextView(R.id.details_ref_consider_op, R.string.things_about_surgery, DataFormatter.formatBoolean(this, surveyData.isConsiderSurgery()));
     }
 
+    /**
+     * Populates diseases and medical history section with translated disease names.
+     *
+     * @param surveyData The patient survey data
+     */
     private void populateDiseasesSection(SurveyData surveyData) {
+        List<String> translatedDiseases = new ArrayList<>();
+        translatedDiseases.addAll(SurveyMapperService.translateDiseases(this, surveyData.getDiseases()));
+        translatedDiseases.addAll(SurveyMapperService.translateAdditionalDiseases(this, surveyData.getAdditionalDiseases()));
+
         setLabeledTextView(R.id.details_diseases, R.string.diseases2,
-                DataFormatter.formatList(new ArrayList<>() {{
-                    addAll(SurveyMapperService.translateDiseases(surveyData.getDiseases()));
-                    addAll(SurveyMapperService.translateAdditionalDiseases(surveyData.getAdditionalDiseases()));
-                }}));
+                DataFormatter.formatList(this, translatedDiseases));
 
         setLabeledTextView(R.id.details_additional_diseases, R.string.additional_diseases,
-                DataFormatter.formatNullableString(surveyData.getOtherDiseases()));
+                DataFormatter.formatNullableString(this, surveyData.getOtherDiseases()));
 
         setLabeledTextView(R.id.details_abdomen_surgeries, R.string.abdominal_surgery,
-                DataFormatter.formatBoolean(surveyData.isAbdomenSurgeries()));
+                DataFormatter.formatBoolean(this, surveyData.isAbdomenSurgeries()));
 
         setLabeledTextView(R.id.details_family_diseases, R.string.diseases_in_family,
-                DataFormatter.formatList(SurveyMapperService.translateFamilyDiseases(surveyData.getFamilyDiseases())));
+                DataFormatter.formatList(this, SurveyMapperService.translateFamilyDiseases(this, surveyData.getFamilyDiseases())));
 
-        List<String> translatedContraindications = SurveyMapperService.translateContraindications(surveyData.getContraindications());
+        List<String> translatedContraindications = SurveyMapperService.translateContraindications(this, surveyData.getContraindications());
         setLabeledTextView(R.id.details_contraindications, R.string.contraindications,
-                DataFormatter.formatList(translatedContraindications));
+                DataFormatter.formatList(this, translatedContraindications));
     }
 
+    /**
+     * Populates bariatric treatment history section.
+     *
+     * @param surveyData The patient survey data
+     */
     private void populateBariatricSection(SurveyData surveyData) {
-        List<String> translatedTreatments = SurveyMapperService.translatePreviousTreatments(surveyData.getPreviousTreatments());
+        List<String> translatedTreatments = SurveyMapperService.translatePreviousTreatments(this, surveyData.getPreviousTreatments());
         setLabeledTextView(R.id.details_treatment_attempts, R.string.treatment_trials,
-                DataFormatter.formatList(translatedTreatments));
+                DataFormatter.formatList(this, translatedTreatments));
 
         setLabeledTextView(R.id.details_chronic_meds, R.string.medication,
-                DataFormatter.formatBoolean(surveyData.isChronicMedication()));
+                DataFormatter.formatBoolean(this, surveyData.isChronicMedication()));
         setLabeledTextView(R.id.details_meds_details, R.string.medication_details,
-                DataFormatter.formatNullableString(surveyData.getMedicationDetails()));
+                DataFormatter.formatNullableString(this, surveyData.getMedicationDetails()));
         setLabeledTextView(R.id.details_specialist_care, R.string.specialist_care,
-                DataFormatter.formatBoolean(surveyData.isSpecialistClinic()));
+                DataFormatter.formatBoolean(this, surveyData.isSpecialistClinic()));
         setLabeledTextView(R.id.details_specialist_type, R.string.clinic_type,
-                DataFormatter.formatNullableString(surveyData.getClinicType()));
+                DataFormatter.formatNullableString(this, surveyData.getClinicType()));
     }
 
+    /**
+     * Populates lifestyle factors section.
+     *
+     * @param surveyData The patient survey data
+     */
     private void populateLifestyleSection(SurveyData surveyData) {
-        setLabeledTextView(R.id.details_physical_activity, R.string.physical_activity, DataFormatter.formatBoolean(surveyData.isPhysicalActivity()));
-        setLabeledTextView(R.id.details_healthy_eating, R.string.healthy_diet, DataFormatter.formatBoolean(surveyData.isHealthyEating()));
-        setLabeledTextView(R.id.details_processed_food, R.string.processed_food, DataFormatter.formatBoolean(surveyData.isProcessedFood()));
-        setLabeledTextView(R.id.details_compulsive_eating, R.string.compulsive_eating, DataFormatter.formatCompulsiveEating(surveyData.getCompulsiveEating()));
-        setLabeledTextView(R.id.details_alcohol, R.string.alcohol, DataFormatter.formatBoolean(surveyData.isAlcoholConsumption()));
-        setLabeledTextView(R.id.details_smoking, R.string.cigarets, DataFormatter.formatBoolean(surveyData.isSmoking()));
+        setLabeledTextView(R.id.details_physical_activity, R.string.physical_activity, DataFormatter.formatBoolean(this, surveyData.isPhysicalActivity()));
+        setLabeledTextView(R.id.details_healthy_eating, R.string.healthy_diet, DataFormatter.formatBoolean(this, surveyData.isHealthyEating()));
+        setLabeledTextView(R.id.details_processed_food, R.string.processed_food, DataFormatter.formatBoolean(this, surveyData.isProcessedFood()));
+        setLabeledTextView(R.id.details_compulsive_eating, R.string.compulsive_eating, DataFormatter.formatCompulsiveEating(this, surveyData.getCompulsiveEating()));
+        setLabeledTextView(R.id.details_alcohol, R.string.alcohol, DataFormatter.formatBoolean(this, surveyData.isAlcoholConsumption()));
+        setLabeledTextView(R.id.details_smoking, R.string.cigarets, DataFormatter.formatBoolean(this, surveyData.isSmoking()));
     }
 
+    /**
+     * Populates mental health information section.
+     *
+     * @param surveyData The patient survey data
+     */
     private void populateMentalHealthSection(SurveyData surveyData) {
-        setLabeledTextView(R.id.details_psychiatric_support, R.string.mental_support, DataFormatter.formatBoolean(surveyData.isPsychiatristSupport()));
-        setLabeledTextView(R.id.details_psychological_support, R.string.psychological_support, DataFormatter.formatBoolean(surveyData.isPsychologistSupport()));
-        setLabeledTextView(R.id.details_suicidal_thoughts, R.string.suicial_thoughts, DataFormatter.formatBoolean(surveyData.isSuicidalThoughts()));
+        setLabeledTextView(R.id.details_psychiatric_support, R.string.mental_support, DataFormatter.formatBoolean(this, surveyData.isPsychiatristSupport()));
+        setLabeledTextView(R.id.details_psychological_support, R.string.psychological_support, DataFormatter.formatBoolean(this, surveyData.isPsychologistSupport()));
+        setLabeledTextView(R.id.details_suicidal_thoughts, R.string.suicial_thoughts, DataFormatter.formatBoolean(this, surveyData.isSuicidalThoughts()));
     }
 
+    /**
+     * Displays current user information in the UI.
+     *
+     * @param user The current authenticated user
+     */
     private void populateUserData(User user) {
         TextView userNameTextView = findViewById(R.id.user_name);
         if (userNameTextView != null) {
@@ -225,6 +298,13 @@ public class PatientDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sets text for a labeled TextView with bold label formatting.
+     *
+     * @param textViewId ID of the TextView to update
+     * @param labelStringId String resource ID for the label
+     * @param value The value to display after the label
+     */
     private void setLabeledTextView(int textViewId, int labelStringId, String value) {
         TextView textView = findViewById(textViewId);
         if (textView != null) {
@@ -238,6 +318,9 @@ public class PatientDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Attempts to load chart if both survey and prediction data are available.
+     */
     private void tryLoadChart() {
         if (chartWebView == null) return;
 
@@ -249,6 +332,9 @@ public class PatientDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Attempts to populate prediction text fields if both data sets are available.
+     */
     private void tryPopulatePredictionTexts() {
         SurveyData survey = viewModel.getPatientDetails().getValue();
         PredictionResponse prediction = viewModel.getPrediction().getValue();
@@ -258,6 +344,12 @@ public class PatientDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Populates prediction text fields with weight loss estimates and differences.
+     *
+     * @param prediction The prediction data
+     * @param survey The survey data containing current weight
+     */
     private void populatePredictionTexts(PredictionResponse prediction, SurveyData survey) {
         double currentWeight = survey.getWeight();
 
@@ -277,6 +369,13 @@ public class PatientDetailsActivity extends AppCompatActivity {
                         currentWeight - prediction.getSixMonths()));
     }
 
+    /**
+     * Loads interactive chart in WebView with patient data and predictions.
+     * Prepares localized chart strings and executes JavaScript to render chart.
+     *
+     * @param survey The patient survey data
+     * @param prediction The weight loss predictions
+     */
     private void loadChart(SurveyData survey, PredictionResponse prediction) {
         if (chartWebView == null) return;
 
