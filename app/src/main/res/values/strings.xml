@@ -104,4 +104,8 @@
     <string name="psychological_support">Wsparcie psychologiczne:</string>
     <string name="suicial_thoughts">Myśli samobójcze:</string>
     <string name="close">Zamknij</string>
+
+    <string name="prediction_1_month">1 miesiąc po operacji</string>
+    <string name="prediction_3_months">3 miesiące po operacji</string>
+    <string name="prediction_6_months">6 miesięcy po operacji</string>
 </resources>
