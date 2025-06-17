@@ -32,13 +32,6 @@ public class DataFormatter {
         return String.join(", ", list);
     }
 
-    public static String formatDate(String date) {
-        if (date == null || date.isEmpty()) {
-            return "Brak danych";
-        }
-        return date;
-    }
-
     public static String formatWeight(int weight) {
         return weight + " kg";
     }
@@ -63,5 +56,17 @@ public class DataFormatter {
 
     public static String formatNullableInt(Integer value) {
         return value != null ? String.valueOf(value) : "Brak danych";
+    }
+
+    public static String formatDate(String isoDate) {
+        if (isoDate == null || isoDate.isEmpty()) return "";
+        try {
+            java.text.SimpleDateFormat inputFormat = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            java.text.SimpleDateFormat outputFormat = new java.text.SimpleDateFormat("dd.MM.yyyy");
+            java.util.Date date = inputFormat.parse(isoDate);
+            return outputFormat.format(date);
+        } catch (Exception e) {
+            return isoDate;
+        }
     }
 }

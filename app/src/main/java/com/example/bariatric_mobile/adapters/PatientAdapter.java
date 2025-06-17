@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bariatric_mobile.R;
 import com.example.bariatric_mobile.activities.PatientDetailsActivity;
 import com.example.bariatric_mobile.models.patient.Patient;
+import com.example.bariatric_mobile.utils.DataFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +58,7 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
         Patient patient = patients.get(position);
 
         holder.codeTextView.setText(patient.getCode());
-        holder.dateTextView.setText(formatDate(patient.getSubmissionDate()));
+        holder.dateTextView.setText(DataFormatter.formatDate(patient.getSubmissionDate()));
 
         String status = patient.getStatus();
         if (status != null && status.equalsIgnoreCase("NOWA")) {
@@ -85,17 +86,7 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
         });
     }
 
-    public String formatDate(String isoDate) {
-        if (isoDate == null || isoDate.isEmpty()) return "";
-        try {
-            java.text.SimpleDateFormat inputFormat = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            java.text.SimpleDateFormat outputFormat = new java.text.SimpleDateFormat("dd.MM.yyyy");
-            java.util.Date date = inputFormat.parse(isoDate);
-            return outputFormat.format(date);
-        } catch (Exception e) {
-            return isoDate;
-        }
-    }
+
 
     @Override
     public int getItemCount() {

@@ -68,13 +68,12 @@
     <string name="loading">Ładowanie...</string>
     <string name="error_occurred">Wystąpił błąd</string>
     <string name="try_again">Spróbuj ponownie</string>
-    <string name="copyright">© 2023 Uniwersyteckie Centrum Kliniczne</string>
 
     <!--Details-->
     <string name="gender">Płeć:</string>
     <string name="birth_date">Data urodzenia:</string>
     <string name="height">Wzrost:</string>
-    <string name="max_weight">Maksymalna waga:</string>
+    <string name="max_weight">Waga:</string>
     <string name="obesity_years">Lata otyłości:</string>
     <string name="bmi">BMI:</string>
     <string name="bmi_category">Kategoria:</string>
@@ -105,7 +104,25 @@
     <string name="suicial_thoughts">Myśli samobójcze:</string>
     <string name="close">Zamknij</string>
 
-    <string name="prediction_1_month">1 miesiąc po operacji</string>
-    <string name="prediction_3_months">3 miesiące po operacji</string>
-    <string name="prediction_6_months">6 miesięcy po operacji</string>
+    <string name="prediction_1_month">1 miesiąc po operacji:</string>
+    <string name="prediction_3_months">3 miesiące po operacji:</string>
+    <string name="prediction_6_months">6 miesięcy po operacji:</string>
+
+    <!-- Chart strings to add to res/values/strings.xml -->
+    <!-- Chart loading and error messages -->
+    <string name="loading_prediction">Ładowanie predykcji…</string>
+    <string name="no_data_to_display">Brak danych do wyświetlenia</string>
+    <string name="no_patient_weight_data">Brak danych o wadze pacjenta</string>
+    <string name="chart_creation_error">Błąd podczas tworzenia wykresu</string>
+    <string name="no_data">Brak danych</string>
+
+    <!-- Chart labels -->
+    <string name="patient_weight">Waga pacjenta</string>
+    <string name="before_surgery">Przed</string>
+    <string name="one_month_after">1 miesiąc po</string>
+    <string name="three_months_after">3 miesiące po</string>
+    <string name="six_months_after">6 miesięcy po</string>
+
+    <!-- Units -->
+    <string name="kg_unit">kg</string>
 </resources>
