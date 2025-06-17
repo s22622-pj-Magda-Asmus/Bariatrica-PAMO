@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wykres Predykcji</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background-color: transparent;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            min-height: 300px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .error {
+            text-align: center;
+            padding: 40px;
+            color: #f44336;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div id="chart-container">
+    <div class="loading">Loading...</div>
+</div>
+
+<script>
+    let chartInstance = null;
+
+    window.loadChartData = function(surveyData, predictionData, strings) {
+        const container = document.getElementById('chart-container');
+
+        if (!surveyData || !predictionData || !strings) {
+            container.innerHTML = '<div class="error">Missing data</div>';
+            return;
+        }
+
+        if (!surveyData.weight) {
+            container.innerHTML = `<div class="error">${strings.noWeight}</div>`;
+            return;
+        }
+
+        try {
+            const currentWeight = parseFloat(surveyData.weight);
+            const oneMonth = parseFloat(predictionData.one_month);
+            const threeMonths = parseFloat(predictionData.three_months);
+            const sixMonths = parseFloat(predictionData.six_months);
+
+            const chartData = {
+                labels: [strings.before, strings.oneMonth, strings.threeMonths, strings.sixMonths],
+                datasets: [{
+                    label: strings.patientWeight,
+                    data: [
+                        currentWeight,
+                        oneMonth || null,
+                        threeMonths || null,
+                        sixMonths || null
+                    ],
+                    borderColor: '#8884d8',
+                    backgroundColor: 'rgba(136, 132, 216, 0.1)',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#8884d8',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                    fill: true,
+                    tension: 0.4
+                }]
+            };
+
+            const config = {
+                type: 'line',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    aspectRatio: 1.5,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y ?
+                                        `${context.parsed.y.toFixed(1)} ${strings.weightUnit}` :
+                                        strings.noDataPoint;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + ' ' + strings.weightUnit;
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Destroy previous chart
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            // Create canvas
+            container.innerHTML = '<canvas id="predictionChart"></canvas>';
+            const ctx = document.getElementById('predictionChart').getContext('2d');
+
+            // Create new chart
+            chartInstance = new Chart(ctx, config);
+
+        } catch (error) {
+            container.innerHTML = `<div class="error">${strings.chartError || 'Chart error'}</div>`;
+        }
+    };
+</script>
+</body>
+</html>

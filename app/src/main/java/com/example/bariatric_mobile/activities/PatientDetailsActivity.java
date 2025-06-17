@@ -1,11 +1,16 @@
 package com.example.bariatric_mobile.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
+import android.util.Log;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,6 +29,7 @@ import com.example.bariatric_mobile.viewmodels.PatientDetailsViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PatientDetailsActivity extends AppCompatActivity {
 
@@ -33,6 +39,8 @@ public class PatientDetailsActivity extends AppCompatActivity {
     private TextView detailsCodeText;
     private TextView detailsDateText;
     private LinearLayout backToList;
+
+    private WebView chartWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,8 @@ public class PatientDetailsActivity extends AppCompatActivity {
         detailsCodeText = findViewById(R.id.details_code);
         detailsDateText = findViewById(R.id.details_date);
         backToList = findViewById(R.id.back_to_list);
+        chartWebView = findViewById(R.id.chart_webview);
+        setupWebView();
     }
 
     private void initializeViewModel() {
@@ -61,12 +71,16 @@ public class PatientDetailsActivity extends AppCompatActivity {
         viewModel.getPatientDetails().observe(this, surveyData -> {
             if (surveyData != null) {
                 populatePatientData(surveyData);
+                tryPopulatePredictionTexts();
+                tryLoadChart();
+
             }
         });
 
         viewModel.getPrediction().observe(this, prediction -> {
             if (prediction != null) {
-                // TODO: Handle prediction data if chart is added later
+                tryPopulatePredictionTexts();
+                tryLoadChart();
             }
         });
 
@@ -101,9 +115,28 @@ public class PatientDetailsActivity extends AppCompatActivity {
         finish();
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
+    private void setupWebView() {
+        if (chartWebView == null) return;
+
+        chartWebView.getSettings().setJavaScriptEnabled(true);
+        chartWebView.getSettings().setDomStorageEnabled(true);
+        chartWebView.getSettings().setAllowFileAccess(true);
+
+        chartWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                tryLoadChart();
+            }
+        });
+
+        chartWebView.loadUrl("file:///android_asset/chart_simple.html");
+    }
+
     private void populatePatientData(SurveyData surveyData) {
         detailsCodeText.setText(surveyData.getPatientCode());
-        detailsDateText.setText(DataFormatter.formatDate(surveyData.getSubmissionDate()));
+        detailsDateText.setText(DataFormatter.formatDate(surveyData.getDate()));
 
         populatePersonalDataSection(surveyData);
         populateReferralDataSection(surveyData);
@@ -117,7 +150,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
         setLabeledTextView(R.id.details_gender, R.string.gender, surveyData.getGender());
         setLabeledTextView(R.id.details_birthdate, R.string.birth_date, DataFormatter.formatDate(surveyData.getBirthDate()));
         setLabeledTextView(R.id.details_height, R.string.height, DataFormatter.formatHeight(surveyData.getHeight()));
-        setLabeledTextView(R.id.details_max_weight, R.string.max_weight, DataFormatter.formatWeight(surveyData.getMaxWeight()));
+        setLabeledTextView(R.id.details_max_weight, R.string.max_weight, DataFormatter.formatWeight(surveyData.getWeight()));
         setLabeledTextView(R.id.details_obesity_years, R.string.obesity_years, DataFormatter.formatNullableInt(surveyData.getObesityYears()));
 
         double bmi = BmiCalculator.calculateBMI(surveyData.getWeight(), surveyData.getHeight());
@@ -197,7 +230,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
         if (textView != null) {
             String label = getString(labelStringId);
             SpannableStringBuilder builder = new SpannableStringBuilder();
-            SpannableString boldLabel = new SpannableString(label + ": ");
+            SpannableString boldLabel = new SpannableString(label + " ");
             boldLabel.setSpan(new StyleSpan(Typeface.BOLD), 0, boldLabel.length(), 0);
             builder.append(boldLabel);
             builder.append(value != null ? value : "");
@@ -205,9 +238,85 @@ public class PatientDetailsActivity extends AppCompatActivity {
         }
     }
 
+    private void tryLoadChart() {
+        if (chartWebView == null) return;
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+        SurveyData survey = viewModel.getPatientDetails().getValue();
+        PredictionResponse prediction = viewModel.getPrediction().getValue();
+
+        if (survey != null && prediction != null) {
+            loadChart(survey, prediction);
+        }
+    }
+
+    private void tryPopulatePredictionTexts() {
+        SurveyData survey = viewModel.getPatientDetails().getValue();
+        PredictionResponse prediction = viewModel.getPrediction().getValue();
+
+        if (survey != null && prediction != null) {
+            populatePredictionTexts(prediction, survey);
+        }
+    }
+
+    private void populatePredictionTexts(PredictionResponse prediction, SurveyData survey) {
+        double currentWeight = survey.getWeight();
+
+        setLabeledTextView(R.id.prediction_1_month_text, R.string.prediction_1_month,
+                String.format(Locale.US, "%.1f kg (- %.1f kg)",
+                        prediction.getOneMonth(),
+                        currentWeight - prediction.getOneMonth()));
+
+        setLabeledTextView(R.id.prediction_3_months_text, R.string.prediction_3_months,
+                String.format(Locale.US, "%.1f kg (- %.1f kg)",
+                        prediction.getThreeMonths(),
+                        currentWeight - prediction.getThreeMonths()));
+
+        setLabeledTextView(R.id.prediction_6_months_text, R.string.prediction_6_months,
+                String.format(Locale.US, "%.1f kg (- %.1f kg)",
+                        prediction.getSixMonths(),
+                        currentWeight - prediction.getSixMonths()));
+    }
+
+    private void loadChart(SurveyData survey, PredictionResponse prediction) {
+        if (chartWebView == null) return;
+
+        String chartStrings = String.format(Locale.US,
+                "{" +
+                        "\"loading\": \"%s\", " +
+                        "\"noData\": \"%s\", " +
+                        "\"noWeight\": \"%s\", " +
+                        "\"chartError\": \"%s\", " +
+                        "\"patientWeight\": \"%s\", " +
+                        "\"noDataPoint\": \"%s\", " +
+                        "\"before\": \"%s\", " +
+                        "\"oneMonth\": \"%s\", " +
+                        "\"threeMonths\": \"%s\", " +
+                        "\"sixMonths\": \"%s\", " +
+                        "\"weightUnit\": \"%s\"" +
+                        "}",
+                getString(R.string.loading_prediction),
+                getString(R.string.no_data_to_display),
+                getString(R.string.no_patient_weight_data),
+                getString(R.string.chart_creation_error),
+                getString(R.string.patient_weight),
+                getString(R.string.no_data),
+                getString(R.string.before_surgery),
+                getString(R.string.one_month_after),
+                getString(R.string.three_months_after),
+                getString(R.string.six_months_after),
+                getString(R.string.kg_unit)
+        );
+
+        String jsCode = String.format(Locale.US,
+                "if (typeof loadChartData === 'function') { " +
+                        "loadChartData({weight: %.1f}, {one_month: %.1f, three_months: %.1f, six_months: %.1f}, %s); " +
+                        "}",
+                (double) survey.getWeight(),
+                prediction.getOneMonth(),
+                prediction.getThreeMonths(),
+                prediction.getSixMonths(),
+                chartStrings);
+
+        chartWebView.evaluateJavascript(jsCode, null);
     }
 }
