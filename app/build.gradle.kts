@@ -30,45 +30,43 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    // Dodaj obsługę ViewBinding
     buildFeatures {
         viewBinding = true
+    }
+
+    testOptions {
+        unitTests.all {
+            it.useJUnitPlatform()
+        }
     }
 }
 
 dependencies {
-    // Podstawowe biblioteki Android
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
     implementation(libs.core.ktx)
 
-    // Architektura i Komponenty Lifecycle
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.lifecycle.livedata)
     implementation(libs.lifecycle.runtime)
 
-    // Networking
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
     implementation(libs.gson)
 
-    // Bezpieczeństwo
     implementation(libs.security.crypto)
     implementation(libs.jjwt.api)
     implementation(libs.jjwt.impl)
     runtimeOnly(libs.jjwt.orgjson)
 
-    // Wykresy
-    implementation(libs.mpandroidchart)
 
-    // Generowanie PDF
-    implementation(libs.itext7.core)
 
-    // Testy
-    testImplementation(libs.junit)
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    testImplementation("org.mockito:mockito-junit-jupiter:4.11.0")
+    testImplementation("org.mockito:mockito-core:4.11.0")
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }
