@@ -10,7 +10,6 @@
     <include layout="@layout/header" />
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/dashboard_body"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -154,7 +153,6 @@
                         android:padding="@dimen/space_2" />
 
                     <TextView
-                        android:id="@+id/empty_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -164,7 +162,6 @@
                         android:visibility="gone" />
 
                     <ProgressBar
-                        android:id="@+id/loading_view"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_gravity="center"
@@ -176,7 +173,6 @@
                         android:background="@color/gray_light" />
 
                     <LinearLayout
-                        android:id="@+id/pagination_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"

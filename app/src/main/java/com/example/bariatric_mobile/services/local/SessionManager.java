@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 
 /**
  * Manages secure storage and retrieval of user session data.
- *
+ * <p>
  * Uses Android's EncryptedSharedPreferences for secure user data storage
  * with JSON serialization. Falls back to regular SharedPreferences
  * if encryption setup fails.

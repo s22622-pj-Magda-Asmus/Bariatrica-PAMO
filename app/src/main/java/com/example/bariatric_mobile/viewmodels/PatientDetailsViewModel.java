@@ -14,7 +14,7 @@ import com.example.bariatric_mobile.repositories.PatientRepository;
 
 /**
  * ViewModel for managing patient details screen data and operations.
- *
+ * <p>
  * Handles loading patient survey data and weight loss predictions,
  * provides user authentication state, and manages logout functionality.
  * Follows MVVM architecture pattern with LiveData for reactive UI updates.
@@ -79,12 +79,4 @@ public class PatientDetailsViewModel extends AndroidViewModel {
         return authRepository.getCurrentUser();
     }
 
-    /**
-     * Called when the ViewModel is no longer used and will be destroyed.
-     * Performs cleanup operations.
-     */
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-    }
 }

@@ -5,11 +5,7 @@
     <color name="blue_light">#90CAF9</color>
 
     <color name="green">#4CAF50</color>
-    <color name="green_dark">#16A34A</color>
-    <color name="green_light">#D1FAE5</color>
 
-    <color name="yellow">#A16207</color>
-    <color name="yellow_light">#FEF3C7</color>
     <color name="orange">#FF9800</color>
 
     <color name="red">#F44336</color>
@@ -20,13 +16,7 @@
     <color name="gray">#9CA3AF</color>
     <color name="gray_dark">#374151</color>
     <color name="white">#FFFFFF</color>
-    <color name="dark">#333333</color>
 
     <color name="teal">#4CC2A7</color>
-    <color name="uck_blue">#A5D6E7</color>
 
-    <color name="black">#FF000000</color>
-    <color name="colorPrimary">@color/teal</color>
-    <color name="colorPrimaryDark">@color/blue_dark</color>
-    <color name="colorAccent">@color/teal</color>
 </resources>

@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Data model representing comprehensive patient survey information.
- *
+ * <p>
  * Contains all patient data collected during the intake process including
  * personal information, medical history, lifestyle factors, mental health
  * status, and referral details. Used for displaying patient details and

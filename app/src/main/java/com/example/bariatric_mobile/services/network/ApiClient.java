@@ -3,6 +3,8 @@ package com.example.bariatric_mobile.services.network;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
+
 import com.example.bariatric_mobile.activities.LoginActivity;
 import com.example.bariatric_mobile.repositories.AuthRepository;
 import com.example.bariatric_mobile.services.local.TokenManager;
@@ -143,6 +145,7 @@ public class ApiClient {
          * @return The HTTP response
          * @throws IOException if the request execution fails
          */
+        @NonNull
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request original = chain.request();

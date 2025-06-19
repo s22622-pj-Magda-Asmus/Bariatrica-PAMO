@@ -2,7 +2,7 @@ package com.example.bariatric_mobile.models.auth;
 
 /**
  * Data model representing an authenticated user.
- *
+ * <p>
  * Contains user identification and contact information
  * used throughout the application for authentication
  * and user interface personalization.

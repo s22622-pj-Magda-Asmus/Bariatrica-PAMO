@@ -24,7 +24,7 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
         void onDetailsClick(Patient patient);
     }
 
-    private List<Patient> patients = new ArrayList<>();
+    private List<Patient> patients;
     private final OnDetailsClickListener listener;
 
     public PatientAdapter(List<Patient> patients, OnDetailsClickListener listener) {
@@ -33,8 +33,10 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
     }
 
     public static class PatientViewHolder extends RecyclerView.ViewHolder {
-        TextView codeTextView, dateTextView, statusTextView;
-        View detailsButton;
+        final TextView codeTextView;
+        final TextView dateTextView;
+        final TextView statusTextView;
+        final View detailsButton;
 
         public PatientViewHolder(@NonNull View itemView) {
             super(itemView);

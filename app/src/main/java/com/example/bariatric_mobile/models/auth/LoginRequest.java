@@ -2,7 +2,7 @@ package com.example.bariatric_mobile.models.auth;
 
 /**
  * Data model representing user login credentials for authentication requests.
- *
+ * <p>
  * Contains user email and password required for login API endpoint.
  * Used to authenticate users and obtain access tokens.
  */

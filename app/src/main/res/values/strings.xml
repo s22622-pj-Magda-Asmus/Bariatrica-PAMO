@@ -8,15 +8,8 @@
     <string name="login_username">Nazwa użytkownika</string>
     <string name="login_password">Hasło</string>
     <string name="login_button">Zaloguj</string>
-    <string name="login_error">Błąd podczas logowania</string>
-    <string name="session_expired">Twoja sesja wygasła. Zaloguj się ponownie.</string>
-    <string name="fields_required">Wszystkie pola są wymagane</string>
 
     <!-- Session Expiry -->
-    <string name="session_will_expire">Sesja wygaśnie wkrótce</string>
-    <string name="session_expires_in">Twoja sesja wygaśnie za %1$d sekund.</string>
-    <string name="renew_session">Odnów sesję</string>
-    <string name="renewing_session">Odnawianie sesji...</string>
 
     <!--    HEADER-->
     <string name="hospital">SZPITAL</string>
@@ -26,7 +19,6 @@
     <string name="doctor_panel">Panel Lekarza</string>
     <string name="dashboard_subtitle">Zarządzaj ankietami pacjentów bariatrycznych</string>
     <string name="patient_list">Lista ankiet pacjentów</string>
-    <string name="search_patient">Szukaj pacjenta po kodzie...</string>
     <string name="logout">Wyloguj</string>
     <string name="no_patients">Brak pacjentów do wyświetlenia</string>
     <string name="details">Szczegóły</string>
@@ -39,10 +31,7 @@
     <string name="from">z</string>
 
     <!-- Patient Details -->
-    <string name="patient_details">Szczegóły ankiety pacjenta</string>
     <string name="back_to_list">Powrót do listy pacjentów</string>
-    <string name="loading_patient">Ładowanie danych pacjenta...</string>
-    <string name="print_survey">Drukuj ankietę</string>
 
     <!-- BMI -->
     <string name="bmi_underweight">Niedowaga</string>
@@ -54,20 +43,15 @@
 
     <!-- Sections -->
     <string name="personal_data">Dane osobowe</string>
-    <string name="referral_data">Dane skierowania</string>
     <string name="diseases">Choroby</string>
     <string name="bariatric_qualification">Kwalifikacja bariatryczna</string>
     <string name="lifestyle">Styl życia</string>
     <string name="mental_health">Zdrowie psychiczne</string>
-    <string name="weight_prediction">Predykcja utraty wagi</string>
     <string name="weight_loss_prediction">Predykcja utraty wagi</string>
 
     <!-- Misc -->
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
-    <string name="loading">Ładowanie...</string>
-    <string name="error_occurred">Wystąpił błąd</string>
-    <string name="try_again">Spróbuj ponownie</string>
 
     <!--Details-->
     <string name="gender">Płeć:</string>
@@ -102,7 +86,6 @@
     <string name="mental_support">Wsparcie psychiatryczne:</string>
     <string name="psychological_support">Wsparcie psychologiczne:</string>
     <string name="suicial_thoughts">Myśli samobójcze:</string>
-    <string name="close">Zamknij</string>
 
     <!-- Diseases -->
     <string name="disease_arthritis">Choroba zwyrodnieniowa stawów</string>

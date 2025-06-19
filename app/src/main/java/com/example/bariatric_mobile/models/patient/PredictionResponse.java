@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Data model representing AI-generated weight loss predictions for a patient.
- *
+ * <p>
  * Contains predicted weight values at specific time intervals following
  * bariatric surgery (1 month, 3 months, and 6 months post-operation).
  * All weight values are in kilograms.

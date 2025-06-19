@@ -63,6 +63,7 @@
         <ImageView
             android:layout_width="16dp"
             android:layout_height="16dp"
+            android:contentDescription="TODO"
             android:src="@drawable/ic_eye"
             android:layout_marginEnd="6dp" />
 

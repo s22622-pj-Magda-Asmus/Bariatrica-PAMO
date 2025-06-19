@@ -8,7 +8,7 @@ import androidx.security.crypto.MasterKey;
 
 /**
  * Manages secure storage and retrieval of authentication tokens.
- *
+ * <p>
  * Uses Android's EncryptedSharedPreferences for secure token storage
  * with AES256 encryption. Falls back to regular SharedPreferences
  * if encryption setup fails.

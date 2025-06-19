@@ -11,7 +11,7 @@ import com.example.bariatric_mobile.R;
 
 /**
  * Splash screen activity displayed when the application starts.
- *
+ * <p>
  * Shows the app logo and branding for a brief period before automatically
  * navigating to the login screen. Provides a smooth app launch experience.
  */

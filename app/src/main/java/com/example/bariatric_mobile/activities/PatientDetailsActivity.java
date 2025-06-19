@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
-import android.util.Log;
-import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -33,7 +31,7 @@ import java.util.Locale;
 
 /**
  * Activity for displaying detailed patient information and weight loss predictions.
- *
+ * <p>
  * Shows comprehensive patient survey data including personal information,
  * medical history, lifestyle factors, and AI-generated weight loss predictions
  * with interactive charts. Supports data formatting, translation, and navigation.

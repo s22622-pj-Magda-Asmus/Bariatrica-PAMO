@@ -2,6 +2,7 @@ package com.example.bariatric_mobile.repositories;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -19,7 +20,7 @@ import retrofit2.Response;
 
 /**
  * Repository for managing user authentication operations and state.
- *
+ * <p>
  * Handles login, logout, and authentication state management using secure
  * local storage for tokens and user data. Provides LiveData objects for
  * observing authentication state changes in the UI layer.
@@ -91,7 +92,7 @@ public class AuthRepository {
 
         authApiService.login(loginRequest).enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+            public void onResponse(@NonNull Call<AuthResponse> call, @NonNull Response<AuthResponse> response) {
                 isLoading.postValue(false);
 
                 if (response.isSuccessful() && response.body() != null) {
@@ -109,7 +110,7 @@ public class AuthRepository {
             }
 
             @Override
-            public void onFailure(Call<AuthResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<AuthResponse> call, @NonNull Throwable t) {
                 isLoading.postValue(false);
             }
         });

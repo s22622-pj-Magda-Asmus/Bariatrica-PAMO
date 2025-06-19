@@ -1,5 +1,6 @@
 package com.example.bariatric_mobile.repositories;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -18,7 +19,7 @@ import retrofit2.Response;
 
 /**
  * Repository class for managing patient data operations and API interactions.
- *
+ * <p>
  * Handles fetching patient details, predictions, and patient lists from the remote API.
  * Provides LiveData objects for observing data changes in the UI layer following
  * the MVVM architecture pattern.
@@ -67,7 +68,7 @@ public class PatientRepository {
     public void fetchPatientDetails(String patientId) {
         patientApiService.getPatientDetails(patientId).enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<SurveyData> call, Response<SurveyData> response) {
+            public void onResponse(@NonNull Call<SurveyData> call, @NonNull Response<SurveyData> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     SurveyData surveyData = response.body();
                     updateSurveyStatus(patientId);
@@ -76,7 +77,7 @@ public class PatientRepository {
             }
 
             @Override
-            public void onFailure(Call<SurveyData> call, Throwable t) {
+            public void onFailure(@NonNull Call<SurveyData> call, @NonNull Throwable t) {
             }
         });
     }
@@ -90,14 +91,14 @@ public class PatientRepository {
     public void fetchPrediction(String patientId) {
         predictionApiService.getPrediction(patientId).enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<PredictionResponse> call, Response<PredictionResponse> response) {
+            public void onResponse(@NonNull Call<PredictionResponse> call, @NonNull Response<PredictionResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     prediction.postValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<PredictionResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<PredictionResponse> call, @NonNull Throwable t) {
             }
         });
     }
@@ -111,10 +112,10 @@ public class PatientRepository {
     private void updateSurveyStatus(String patientId) {
         patientApiService.updateSurveyStatus(patientId).enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {}
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {}
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {}
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {}
         });
     }
 
@@ -147,14 +148,14 @@ public class PatientRepository {
     public void fetchAllPatients(PatientListCallback callback) {
         patientApiService.getPatients().enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<List<Patient>> call, Response<List<Patient>> response) {
+            public void onResponse(@NonNull Call<List<Patient>> call, @NonNull Response<List<Patient>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     callback.onSuccess(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Patient>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Patient>> call, @NonNull Throwable t) {
             }
         });
     }

@@ -180,7 +180,7 @@ public class DataFormatter {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
             SimpleDateFormat outputFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
             Date date = inputFormat.parse(isoDate);
-            return outputFormat != null && date != null ? outputFormat.format(date) : isoDate;
+            return date != null ? outputFormat.format(date) : isoDate;
         } catch (Exception e) {
             return isoDate;
         }

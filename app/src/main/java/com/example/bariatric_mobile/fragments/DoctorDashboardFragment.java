@@ -28,7 +28,6 @@ import java.util.List;
 
 public class DoctorDashboardFragment extends Fragment {
 
-    private RecyclerView recyclerView;
     private PatientAdapter adapter;
     private DashboardViewModel viewModel;
 
@@ -47,7 +46,7 @@ public class DoctorDashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView = view.findViewById(R.id.patient_recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.patient_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         paginationInfo = view.findViewById(R.id.pagination_info);
         nextPageButton = view.findViewById(R.id.next_page);

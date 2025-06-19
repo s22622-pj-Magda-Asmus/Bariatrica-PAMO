@@ -2,7 +2,7 @@ package com.example.bariatric_mobile.models.auth;
 
 /**
  * Data model representing successful authentication response from the API.
- *
+ * <p>
  * Contains authenticated user information and access token required
  * for subsequent API requests. Returned by login and token refresh endpoints.
  */

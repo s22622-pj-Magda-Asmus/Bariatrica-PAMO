@@ -14,7 +14,7 @@ import com.example.bariatric_mobile.repositories.AuthRepository;
 
 /**
  * ViewModel for managing login screen data and user authentication logic.
- *
+ * <p>
  * Handles user input validation, login state management, and coordinates
  * with AuthRepository for authentication operations. Provides combined
  * error handling and automatic error clearing during user input.
@@ -210,12 +210,4 @@ public class LoginViewModel extends AndroidViewModel {
         clearErrorsOnTyping();
     }
 
-    /**
-     * Called when ViewModel is no longer used and will be destroyed.
-     * Performs cleanup operations.
-     */
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-    }
 }

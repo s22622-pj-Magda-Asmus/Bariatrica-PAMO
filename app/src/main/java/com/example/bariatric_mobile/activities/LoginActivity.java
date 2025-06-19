@@ -19,7 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 /**
  * Activity for user authentication and login functionality.
- *
+ * <p>
  * Provides login form with username/email and password fields,
  * handles user input validation, displays authentication progress,
  * and manages navigation to dashboard on successful login.
@@ -70,9 +70,7 @@ public class LoginActivity extends AppCompatActivity {
      * Observes loading state, error messages, and login success.
      */
     private void setupObservers() {
-        viewModel.getIsLoading().observe(this, isLoading -> {
-            updateLoadingState(isLoading != null ? isLoading : false);
-        });
+        viewModel.getIsLoading().observe(this, isLoading -> updateLoadingState(isLoading != null ? isLoading : false));
 
         viewModel.getError().observe(this, error -> {
             if (error != null && !error.isEmpty()) {
@@ -94,9 +92,7 @@ public class LoginActivity extends AppCompatActivity {
      * Connects UI interactions with ViewModel methods.
      */
     private void setupListeners() {
-        loginButton.setOnClickListener(v -> {
-            viewModel.login();
-        });
+        loginButton.setOnClickListener(v -> viewModel.login());
 
         if (viewModel != null) {
             usernameEditText.addTextChangedListener(new TextWatcher() {
@@ -183,12 +179,4 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Called when the activity is being destroyed.
-     * Performs cleanup operations.
-     */
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }
