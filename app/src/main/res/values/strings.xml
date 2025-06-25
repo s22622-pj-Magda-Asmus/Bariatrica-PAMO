@@ -147,4 +147,5 @@
     <!-- Format strings with parameters -->
     <string name="weight_format">%d kg</string>
     <string name="height_format">%d cm</string>
+    <string name="selected_patient">"Wybrano pacjenta: "</string>
 </resources>
