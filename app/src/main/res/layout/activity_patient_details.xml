@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/gray_light"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <include layout="@layout/header" />
 
-        <androidx.core.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/details_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
@@ -23,18 +24,18 @@
                 android:id="@+id/back_to_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
                 android:clickable="true"
                 android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingBottom="8dp">
 
                 <ImageView
                     android:layout_width="16dp"
                     android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
                     android:contentDescription="TODO"
-                    android:src="@drawable/ic_back"
-                    android:layout_marginEnd="4dp" />
+                    android:src="@drawable/ic_back" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -46,569 +47,570 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/details_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:text="@string/details"
                 android:textColor="@color/gray_dark"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="16dp" />
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_white"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:orientation="horizontal"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/details_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/gray_dark"
                         android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/gray_dark" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/survey_fill_date"
-                        android:textSize="14sp"
-                        android:textColor="@color/gray_dark" />
+                        android:textColor="@color/gray_dark"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/details_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/gray_dark"
                         android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/gray_dark" />
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_white"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="18dp"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="18dp">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
                         android:contentDescription="TODO"
                         android:src="@drawable/ic_user"
-                        android:layout_marginEnd="8dp"
                         app:tint="@color/teal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/personal_data"
-                        android:textStyle="bold"
+                        android:textColor="@color/gray_dark"
                         android:textSize="18sp"
-                        android:textColor="@color/gray_dark" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/details_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/gender"
-                    android:textSize="14sp"
                     android:textColor="@color/gray_dark"
-                    android:layout_marginBottom="8dp"/>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_birthdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/birth_date"
-                    android:textSize="14sp"
                     android:textColor="@color/gray_dark"
-                    android:layout_marginBottom="8dp"/>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/height"
-                    android:textSize="14sp"
                     android:textColor="@color/gray_dark"
-                    android:layout_marginBottom="8dp"/>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_max_weight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/max_weight"
-                    android:textSize="14sp"
                     android:textColor="@color/gray_dark"
-                    android:layout_marginBottom="8dp"/>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_obesity_years"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/obesity_years"
-                    android:textSize="14sp"
                     android:textColor="@color/gray_dark"
-                    android:layout_marginBottom="8dp"/>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_bmi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/bmi"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
                     android:textColor="@color/red"
-                    android:layout_marginBottom="8dp"/>
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/details_bmi_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark" />
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_white"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="18dp"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="18dp">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
                         android:contentDescription="TODO"
                         android:src="@drawable/ic_document"
-                        android:layout_marginEnd="8dp"
                         app:tint="@color/teal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/refferal"
-                        android:textStyle="bold"
+                        android:textColor="@color/gray_dark"
                         android:textSize="18sp"
-                        android:textColor="@color/gray_dark" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/details_ref_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/patient_code2"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/patient_code2"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_ref_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/refferal_type"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/refferal_type"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_ref_pin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/refferal_pin"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/refferal_pin"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_ref_consider_op"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:lineSpacingExtra="6dp"
                     android:text="@string/things_about_surgery"
-                    android:textSize="14sp"
                     android:textColor="@color/gray_dark"
-                    android:lineSpacingExtra="6dp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_white"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="18dp"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="18dp">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
                         android:contentDescription="TODO"
                         android:src="@drawable/ic_medical"
-                        android:layout_marginEnd="8dp"
                         app:tint="@color/teal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/diseases"
-                        android:textStyle="bold"
+                        android:textColor="@color/gray_dark"
                         android:textSize="18sp"
-                        android:textColor="@color/gray_dark" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/details_diseases"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/diseases2"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/diseases2"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_additional_diseases"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/additional_diseases"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/additional_diseases"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_abdomen_surgeries"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/abdominal_surgery"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/abdominal_surgery"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_family_diseases"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/diseases_in_family"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/diseases_in_family"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_contraindications"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:lineSpacingExtra="6dp"
                     android:text="@string/contraindications"
-                    android:textSize="14sp"
                     android:textColor="@color/gray_dark"
-                    android:lineSpacingExtra="6dp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_white"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="18dp"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="18dp">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
                         android:contentDescription="TODO"
                         android:src="@drawable/ic_chart"
-                        android:layout_marginEnd="8dp"
                         app:tint="@color/teal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/bariatric_qualification"
-                        android:textStyle="bold"
+                        android:textColor="@color/gray_dark"
                         android:textSize="18sp"
-                        android:textColor="@color/gray_dark" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/details_treatment_attempts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/treatment_trials"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/treatment_trials"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_chronic_meds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/medication"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/medication"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_meds_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/medication_details"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/medication_details"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_specialist_care"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/specialist_care"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/specialist_care"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_specialist_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:lineSpacingExtra="6dp"
                     android:text="@string/clinic_type"
-                    android:textSize="14sp"
                     android:textColor="@color/gray_dark"
-                    android:lineSpacingExtra="6dp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_white"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="18dp"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="18dp">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
                         android:contentDescription="TODO"
                         android:src="@drawable/ic_lock"
-                        android:layout_marginEnd="8dp"
                         app:tint="@color/teal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/lifestyle"
-                        android:textStyle="bold"
+                        android:textColor="@color/gray_dark"
                         android:textSize="18sp"
-                        android:textColor="@color/gray_dark" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/details_physical_activity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/physical_activity"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/physical_activity"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_healthy_eating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/healthy_diet"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/healthy_diet"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_processed_food"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/processed_food"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/processed_food"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_compulsive_eating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/compulsive_eating"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/compulsive_eating"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_alcohol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/alcohol"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/alcohol"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_smoking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:lineSpacingExtra="6dp"
                     android:text="@string/cigarets"
-                    android:textSize="14sp"
                     android:textColor="@color/gray_dark"
-                    android:lineSpacingExtra="6dp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_white"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="18dp"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="18dp">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
                         android:contentDescription="TODO"
                         android:src="@drawable/ic_eye"
-                        android:layout_marginEnd="8dp"
                         app:tint="@color/teal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/mental_health"
-                        android:textStyle="bold"
+                        android:textColor="@color/gray_dark"
                         android:textSize="18sp"
-                        android:textColor="@color/gray_dark" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/details_psychiatric_support"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/mental_support"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/mental_support"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_psychological_support"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/psychological_support"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/psychological_support"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/details_suicidal_thoughts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/suicial_thoughts"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark"
+                    android:layout_marginBottom="8dp"
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/suicial_thoughts"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_white"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="18dp"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="18dp">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
                         android:contentDescription="TODO"
                         android:src="@drawable/ic_chart"
-                        android:layout_marginEnd="8dp"
                         app:tint="@color/teal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/weight_loss_prediction"
-                        android:textStyle="bold"
+                        android:textColor="@color/gray_dark"
                         android:textSize="18sp"
-                        android:textColor="@color/gray_dark" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <FrameLayout
@@ -627,24 +629,24 @@
                     android:id="@+id/prediction_1_month_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:layout_marginBottom="6dp"
                     android:textColor="@color/gray_dark"
-                    android:layout_marginBottom="6dp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/prediction_3_months_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:layout_marginBottom="6dp"
                     android:textColor="@color/gray_dark"
-                    android:layout_marginBottom="6dp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/prediction_6_months_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_dark" />
+                    android:textColor="@color/gray_dark"
+                    android:textSize="14sp" />
 
             </LinearLayout>
         </LinearLayout>
